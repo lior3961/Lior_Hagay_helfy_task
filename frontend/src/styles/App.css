@@ -1,0 +1,227 @@
+/* ============================================
+   GLOBAL STYLES AND APP LAYOUT WITH THEME SUPPORT
+   ============================================ */
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   CSS VARIABLES FOR THEMING (BONUS FEATURE)
+   ============================================ */
+
+:root[data-theme="light"] {
+  --bg-gradient-1: #667eea;
+  --bg-gradient-2: #764ba2;
+  --app-bg: white;
+  --text-primary: #333;
+  --text-secondary: #666;
+  --text-inverse: white;
+  --border-color: #ddd;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --shadow-hover: rgba(0, 0, 0, 0.2);
+  --card-bg: white;
+  --search-bg: white;
+  --search-border: #ddd;
+  --select-bg: white;
+  --clear-btn-bg: #f44336;
+}
+
+:root[data-theme="dark"] {
+  --bg-gradient-1: #1a1a2e;
+  --bg-gradient-2: #16213e;
+  --app-bg: #0f1419;
+  --text-primary: #e4e6eb;
+  --text-secondary: #b0b3b8;
+  --text-inverse: #1a1a2e;
+  --border-color: #3a3b3c;
+  --shadow: rgba(0, 0, 0, 0.4);
+  --shadow-hover: rgba(0, 0, 0, 0.6);
+  --card-bg: #242526;
+  --search-bg: #3a3b3c;
+  --search-border: #4a4b4c;
+  --select-bg: #3a3b3c;
+  --clear-btn-bg: #e74c3c;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%);
+  min-height: 100vh;
+  color: var(--text-primary);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* App Container */
+.app {
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Header */
+.app-header {
+  text-align: center;
+  color: white;
+  margin-bottom: 40px;
+  padding: 20px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.app-header h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.app-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* Main Container */
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: var(--app-bg);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 20px 60px var(--shadow);
+  transition: background 0.3s ease;
+}
+
+/* Controls Row - Filter and Sort side by side (BONUS) */
+.controls-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+/* Results Info (BONUS) */
+.results-info {
+  text-align: center;
+  padding: 12px;
+  margin: 15px 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+/* Loading State */
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.spinner {
+  border: 4px solid var(--border-color);
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+/* Error State */
+.error {
+  background: #fee;
+  border: 2px solid #fcc;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.error p {
+  color: #c00;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.error button {
+  background: #c00;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.error button:hover {
+  background: #a00;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+  }
+
+  .app-header h1 {
+    font-size: 2rem;
+  }
+
+  .app-header p {
+    font-size: 1rem;
+  }
+
+  .app-container {
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+  .controls-row {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding: 10px;
+  }
+
+  .app-header {
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+
+  .app-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .app-container {
+    padding: 15px;
+  }
+}
+

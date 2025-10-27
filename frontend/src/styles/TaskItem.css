@@ -1,0 +1,287 @@
+/* ============================================
+   TASK ITEM STYLES WITH THEME SUPPORT
+   Individual task card display
+   ============================================ */
+
+.task-item {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 15px;
+  padding: 25px;
+  position: relative;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+/* Light theme gradient override */
+:root[data-theme="light"] .task-item {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* Dark theme gradient override */
+:root[data-theme="dark"] .task-item {
+  background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+}
+
+.task-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px var(--shadow-hover);
+  border-color: #667eea;
+}
+
+/* Completed Task Styling */
+.task-item.completed {
+  opacity: 0.7;
+}
+
+:root[data-theme="light"] .task-item.completed {
+  background: linear-gradient(135deg, #e0e0e0 0%, #b0b0b0 100%);
+}
+
+:root[data-theme="dark"] .task-item.completed {
+  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+}
+
+.task-item.completed .task-title,
+.task-item.completed .task-description {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* ============================================
+   PRIORITY BADGE
+   Visual indicator for task priority
+   ============================================ */
+
+.priority-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Priority Colors */
+.priority-low {
+  background: #4caf50;
+  color: white;
+}
+
+.priority-medium {
+  background: #ff9800;
+  color: white;
+}
+
+.priority-high {
+  background: #f44336;
+  color: white;
+}
+
+/* ============================================
+   TASK CONTENT
+   ============================================ */
+
+.task-content {
+  margin-right: 60px; /* Space for priority badge */
+  margin-bottom: 20px;
+}
+
+.task-title {
+  font-size: 1.6rem;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.task-description {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 15px;
+  word-wrap: break-word;
+}
+
+/* ============================================
+   TASK METADATA
+   Date and status information
+   ============================================ */
+
+.task-meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 2px solid var(--border-color);
+}
+
+.task-date {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.task-status {
+  font-size: 0.95rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.status-completed {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+:root[data-theme="dark"] .status-completed {
+  background: #1b5e20;
+  color: #a5d6a7;
+}
+
+.status-pending {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+:root[data-theme="dark"] .status-pending {
+  background: #e65100;
+  color: #ffccbc;
+}
+
+/* ============================================
+   ACTION BUTTONS
+   Toggle, Edit, Delete buttons
+   ============================================ */
+
+.task-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.task-actions button {
+  border: none;
+  background: white;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-actions button:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.task-actions button:active {
+  transform: scale(0.95);
+}
+
+/* Individual Button Colors */
+.btn-toggle {
+  background: #4caf50;
+  color: white;
+}
+
+.btn-toggle:hover {
+  background: #45a049;
+}
+
+.btn-edit {
+  background: #2196f3;
+  color: white;
+}
+
+.btn-edit:hover {
+  background: #0b7dda;
+}
+
+.btn-delete {
+  background: #f44336;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #da190b;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  .task-item {
+    padding: 20px;
+  }
+
+  .task-title {
+    font-size: 1.3rem;
+  }
+
+  .task-description {
+    font-size: 1rem;
+  }
+
+  .task-content {
+    margin-right: 0;
+  }
+
+  .priority-badge {
+    position: static;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+
+  .task-actions button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .task-item {
+    padding: 15px;
+  }
+
+  .task-title {
+    font-size: 1.1rem;
+  }
+
+  .task-description {
+    font-size: 0.95rem;
+  }
+
+  .task-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .task-actions {
+    gap: 8px;
+  }
+
+  .task-actions button {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+
+  .priority-badge {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+  }
+}
+
